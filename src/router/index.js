@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import SiteHeader from '../views/SiteHeader';
@@ -16,8 +17,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
-    component: SiteHeader,
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage'),
   },
   {
     path: '/contact',
@@ -25,7 +25,6 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    // component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
     component: SiteHeader,
   },
 ];

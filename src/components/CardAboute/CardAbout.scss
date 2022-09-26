@@ -1,0 +1,141 @@
+.container {
+  width: 100%;
+  max-width: 1360px;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin: 0 auto;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  margin-top: 150px;
+}
+
+.img-wrapper {
+  width: 100%;
+  max-width: 45%;
+  text-align: center;
+
+  img {
+    width: 100%;
+    max-width: 1000px;
+    object-fit: cover;
+  }
+
+  h2 {
+    margin-top: 20px;
+    font-size: 30px;
+    color: #F45905;
+    padding: 10px 35px;
+    background-color: #F7FF93;
+    border-radius: 20px;
+    border: 2px dashed #F45905;
+    display: inline-block;
+  }
+}
+
+.card-left-wrap {
+  margin: 0;
+  width: 100%;
+  max-width: 45%;
+  text-align: center;
+
+
+.title {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  font-size: 30px !important;
+  color: #F45905;
+  border-radius: 20px;
+  margin-bottom: 50px;
+}
+
+.subtitle {
+  color: #F45905;
+  font-size: 20px;
+  opacity: 0.7;
+}
+}
+
+.countr-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+
+  .countr-text {
+    margin: 0;
+    padding: 0;
+    color: #ff6600;
+    font-size:22px;
+    margin-right: 40px;
+  }
+
+  .btn-wrap {
+    font-size: 20px;
+    color: #F45905;
+  }
+
+  .btn {
+    padding: 5px 15px;
+    border-radius: 10px;
+    font-size: 22px;
+    margin: 0 15px;
+    
+    &:active {
+      transform: scale(0.98)
+    }
+  }
+  
+  .plus-count {
+    border: 2px solid #F45905;
+    background-color: #FFFF00;
+  }
+
+  .minus-count {
+    background-color: #FF2626;
+    border: 3px solid #FFFF00;
+    font-size: 26px;
+    padding: 3px 17px;
+    color: #FFFF00
+  }
+
+}
+
+.price-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40px;
+  padding: 7px 0;
+  background-color: #F7FF93;
+
+  .price-text {
+    margin: 0;
+    padding: 0;
+    margin-right: 40px;
+    font-size: 22px;
+    color: #FC5404;
+  }
+
+  .price {
+    margin: 0;
+    padding: 0;
+    margin-left: 40px;
+    font-size: 22px;
+    color: #3CCF4E;
+  }
+}
+
+.basket {
+  margin-top: 60px;
+  background-color: #00FFD1;
+  border-radius: 10px;
+  font-size: 18px;
+  color: green;
+  padding: 10px 15px;
+
+  &:active {
+    transform: scale(0.98)
+  }
+}

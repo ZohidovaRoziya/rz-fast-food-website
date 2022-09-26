@@ -1,3 +1,3 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-restricted-exports */
-export { default } from './AboutPage.vue';
+export { default } from './CardAbout.vue';

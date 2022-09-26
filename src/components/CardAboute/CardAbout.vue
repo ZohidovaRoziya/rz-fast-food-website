@@ -1,31 +1,37 @@
+<!-- eslint-disable vue/require-v-for-key -->
+<!-- eslint-disable vue/no-multiple-template-root -->
+<!-- eslint-disable max-len -->
 <template>
-  <main class="site-main">
-      <div class="container">
-         <ul class="card-list">
-          <li v-for="item in fastData" :key="item.id" class="card-item">
-           <div class="card-img-warap">
-             <img class="card-img" :src="require(`../../assets/images/${item.img}`)" alt="card-img">
-           </div>
-           <div class="card-head">
-             <h2 class="card-title">
-              <router-link :to="item.to">{{item.title}}</router-link>
-             </h2>
-            <p class="card-text">{{item.text}}</p>
-           </div>
-            <hr />
-            <div class="card-bottom">
-              <p class="card-price">{{item.price}} so'm</p>
-              <button class="card-btn">Tanlash</button>
-            </div>
-          </li>
-         </ul>
-      </div>
+  <main >
+    <div v-for="item in fastData"  :key="item.id" class="container">
+    <div class="img-wrapper">
+      <img :src="require(`../../assets/images/${item.img}`)" width="1000" alt="about img">
+      <h2>{{item.title}}</h2>
+    </div>
+    <div class="card-left-wrap">
+        <h1 class="title">{{item.title}}</h1>
+        <p class="subtitle">{{item.text}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto sequi quas dolore quod blanditiis incidunt, consequuntur similique, quam molestias excepturi, aspernatur veniam. Dolorum veritatis culpa iusto, dolore ullam earum nisi?</p>
+        <div class="countr-wrap">
+          <p class="countr-text">Xarid qilish</p>
+          <div class="btn-wrap">
+            <button class="plus-count btn">+</button>
+              1
+            <button class="minus-count btn">-</button>
+          </div>
+        </div>
+        <div class="price-wrap">
+          <p class="price-text">Sotuv narxi</p>
+          <h5 class="price">{{item.price}} so'm</h5>
+        </div>
+        <button class="basket">Savatchaga joylash</button>
+    </div>
+    </div>
   </main>
 </template>
 
 <script>
 export default {
-  name: 'SiteMain',
+  name: 'CardAbout',
   data() {
     return {
       fastData: [
@@ -83,4 +89,4 @@ export default {
 };
 </script>
 
-<style src="./SiteMain.scss" lang="scss"></style>
+<style src="./CardAbout.scss" lang="scss" scoped></style>
