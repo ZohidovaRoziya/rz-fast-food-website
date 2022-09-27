@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/no-parsing-error -->
 <template>
   <main class="site-main">
       <div class="container">
@@ -8,7 +9,8 @@
            </div>
            <div class="card-head">
              <h2 class="card-title">
-              <router-link :to="item.to">{{item.title}}</router-link>
+              <router-link :to="{name: 'fastfood',
+               params: {id: item.id}}">{{item.title}}</router-link>
              </h2>
             <p class="card-text">{{item.text}}</p>
            </div>

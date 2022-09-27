@@ -38,6 +38,12 @@
   width: 100%;
   max-width: 45%;
   text-align: center;
+  padding: 30px 20px;
+  border-top-left-radius: 102px;
+  border-bottom-right-radius: 102px;
+  background-color: #fd831f1c;
+  border: 1px dotted #F45905;
+  box-shadow: 0px 0px 30px 1px rgba(34, 60, 80, 0.21);
 
 
 .title {
@@ -93,7 +99,7 @@
   }
 
   .minus-count {
-    background-color: #FF2626;
+    background-color: #F45905;
     border: 3px solid #FFFF00;
     font-size: 26px;
     padding: 3px 17px;
@@ -129,10 +135,10 @@
 
 .basket {
   margin-top: 60px;
-  background-color: #00FFD1;
+  background-color: #F45905;
   border-radius: 10px;
   font-size: 18px;
-  color: green;
+  color: yellow;
   padding: 10px 15px;
 
   &:active {

@@ -3,14 +3,14 @@
 <!-- eslint-disable max-len -->
 <template>
   <main >
-    <div v-for="item in fastData"  :key="item.id" class="container">
+    <div class="container">
     <div class="img-wrapper">
-      <img :src="require(`../../assets/images/${item.img}`)" width="1000" alt="about img">
-      <h2>{{item.title}}</h2>
+      <img :src="require(`../../assets/images/${fastFood.img}`)" width="1000" alt="about img">
+      <h2>{{fastFood.title}}</h2>
     </div>
     <div class="card-left-wrap">
-        <h1 class="title">{{item.title}}</h1>
-        <p class="subtitle">{{item.text}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto sequi quas dolore quod blanditiis incidunt, consequuntur similique, quam molestias excepturi, aspernatur veniam. Dolorum veritatis culpa iusto, dolore ullam earum nisi?</p>
+        <h1 class="title">{{fastFood.title}}</h1>
+        <p class="subtitle">{{fastFood.text}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto sequi quas dolore quod blanditiis incidunt, consequuntur similique, quam molestias excepturi, aspernatur veniam. Dolorum veritatis culpa iusto, dolore ullam earum nisi?</p>
         <div class="countr-wrap">
           <p class="countr-text">Xarid qilish</p>
           <div class="btn-wrap">
@@ -21,7 +21,7 @@
         </div>
         <div class="price-wrap">
           <p class="price-text">Sotuv narxi</p>
-          <h5 class="price">{{item.price}} so'm</h5>
+          <h5 class="price">{{fastFood.price}} so'm</h5>
         </div>
         <button class="basket">Savatchaga joylash</button>
     </div>
@@ -85,6 +85,11 @@ export default {
         },
       ],
     };
+  },
+  computed: {
+    fastFood() {
+      return this.fastData.find((item) => item.id === this.$route.params.id);
+    },
   },
 };
 </script>
