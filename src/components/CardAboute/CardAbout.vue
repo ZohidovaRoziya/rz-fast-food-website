@@ -1,36 +1,60 @@
 <template>
-  <main >
+  <main>
     <div class="container">
-    <div class="img-wrapper">
-      <img :src="require(`../../assets/images/${fastFood.img}`)" width="1000" alt="about img">
-      <h2>{{fastFood.title}}</h2>
-    </div>
-    <div class="card-left-wrap">
-        <h1 class="title">{{fastFood.title}}</h1>
-        <p class="subtitle">{{fastFood.text}}
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Iusto sequi quas dolore quod blanditiis
-            incidunt, consequuntur similique, quam molestias excepturi,
-             aspernatur veniam. Dolorum veritatis culpa iusto, dolore ullam earum nisi?</p>
+      <div class="img-wrapper">
+        <img
+          :src="require(`../../assets/images/${fastFood.img}`)"
+          width="1000"
+          alt="about img"
+        />
+        <h2>{{ fastFood.title }}</h2>
+      </div>
+      <v-form @submit.prevent="addedCard" ref="form" class="card-left-wrap">
+        <h1 class="title">{{ fastFood.title }}</h1>
+        <p class="subtitle">
+          {{ fastFood.text }} Lorem ipsum dolor sit amet consectetur adipisicing
+          elit. Iusto sequi quas dolore quod blanditiis incidunt, consequuntur
+          similique, quam molestias excepturi, aspernatur veniam. Dolorum
+          veritatis culpa iusto, dolore ullam earum nisi?
+        </p>
         <div class="countr-wrap">
           <p class="countr-text">Xarid qilish</p>
           <div class="btn-wrap">
             <button
               @click="fastFood.count -= 1"
-              :disabled="fastFood.count == 1"
-              class="minus-count btn">-</button>
-              {{ fastFood.count }}
-            <button @click="fastFood.count += 1" class="plus-count btn">+</button>
+              :disabled="fastFood.count <= 1"
+              class="minus-count btn"
+              type="button"
+            >
+              -
+            </button>
+            <v-text-field
+              :rules="countRules"
+              outlined
+              type="number"
+              v-model="fastFood.count"
+            ></v-text-field>
+            <button
+              type="button"
+              @click="fastFood.count = fastFood.count - 0 + 1"
+              class="plus-count btn">
+              +
+            </button>
           </div>
         </div>
         <div class="price-wrap">
           <p class="price-text">Sotuv narxi</p>
-          <h5 class="price">{{
-            (fastFood.price * fastFood.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
-          }} so'm</h5>
+          <h5 class="price">
+            {{
+              (fastFood.price * fastFood.count)
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, " ")
+            }}
+            so'm
+          </h5>
         </div>
-        <button class="basket" @click="addedCard">Savatchaga joylash</button>
-    </div>
+        <button class="basket" type="sumbit">Savatchaga joylash</button>
+      </v-form>
     </div>
   </main>
 </template>
@@ -99,6 +123,7 @@ export default {
       fastFood: {
         img: 'snek.png',
       },
+      countRules: [(v) => v <= 10 || 'Bizda faqat 10 ta lavash qolgan', (v) => v > 0 || 'Iltmos hisobni togri kiriting'],
     };
   },
   created() {
@@ -116,6 +141,9 @@ export default {
   },
   methods: {
     addedCard() {
+      if (!this.$refs.form.validate()) {
+        return;
+      }
       const cardItems = JSON.parse(localStorage.getItem('cardItmes') || '[]');
 
       const findData = cardItems.find((items) => items.id === Number(this.$route.params.id));
