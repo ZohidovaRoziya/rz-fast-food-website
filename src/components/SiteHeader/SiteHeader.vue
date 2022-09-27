@@ -15,6 +15,9 @@
               <li class="site-nav__item">
                  <router-link to="/contact" href="#" class="site-nav__link">Contact</router-link>
               </li>
+              <li class="site-nav__item">
+                 <router-link to="/contact" href="#" class="site-nav__link">Korzina</router-link>
+              </li>
             </ul>
           </nav>
       </div>
