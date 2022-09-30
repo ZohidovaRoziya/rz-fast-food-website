@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <site-header />
-      <router-view />
-
+    <site-header ref="productCount" />
+    <router-view  @updateData="showData" />
   </v-app>
 </template>
 
@@ -17,6 +16,11 @@ export default {
   }),
   components: {
     SiteHeader,
+  },
+  methods: {
+    showData() {
+      this.$refs.productCount.refreshCount();
+    },
   },
 };
 </script>

@@ -7,6 +7,7 @@ export default [
     text: "Yupqa lavash non, bodring, pomidor, chips, mol go'shti, qizil sous, mayonez.",
     price: 28000,
     count: 1,
+    editRow: false,
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ export default [
     text: 'Pomidor sousi “OQTEPA”, shirin piyoz halqalari “Brunsvik”, kazi, Mozzarella va Akbel pishloqlari',
     price: 80000,
     count: 1,
+    editRow: false,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ export default [
     text: 'Qovurilgan non, maxsus sous, bodring, pomidor, tovuq filesi, marul, pishloq, fri kartoshkas',
     price: 26000,
     count: 1,
+    editRow: false,
   },
   {
     id: 4,
@@ -34,6 +37,7 @@ export default [
     text: "Sariyog'li bulochka, maxsus sous, aysberg, tuzlangan bodring, mol go'shti, pomidor, pishloq.",
     price: 22000,
     count: 1,
+    editRow: false,
   },
   {
     id: 5,
@@ -43,6 +47,7 @@ export default [
     text: "Tandirli pita noni, mol go'shti, bodring, pomidor, qizil sous, Brunswick shirin piyoz halqalari",
     price: 20000,
     count: 1,
+    editRow: false,
   },
   {
     id: 6,
@@ -52,5 +57,6 @@ export default [
     text: 'Yam-yashil bulochka, kolbasa, ketchup, mayonez, ikra, bodring, pomidor',
     price: 10000,
     count: 1,
+    editRow: false,
   },
 ];

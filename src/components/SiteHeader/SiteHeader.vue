@@ -16,7 +16,11 @@
                  <router-link to="/contact" href="#" class="site-nav__link">Contact</router-link>
               </li>
               <li class="site-nav__item">
-                 <router-link to="/contact" href="#" class="site-nav__link">Korzina</router-link>
+                 <router-link
+                  to="/korzina"
+                  href="#"
+                  class="site-nav__link"
+                  >Korzina <sup>{{ productCount }}</sup></router-link>
               </li>
             </ul>
           </nav>
@@ -27,6 +31,19 @@
 <script>
 export default {
   name: 'SiteHeaderComponent',
+  data() {
+    return {
+      productCount: 0,
+    };
+  },
+  methods: {
+    refreshCount() {
+      this.productCount = JSON.parse(localStorage.getItem('cardItmes') || '[]').length;
+    },
+  },
+  mounted() {
+    this.refreshCount();
+  },
 };
 </script>
 
