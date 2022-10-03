@@ -1,7 +1,8 @@
 /* eslint-disable import/no-unresolved */
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import SiteMain from '../views/SiteMain';
+import MenuPage from '../views/MenuPage';
+import SiteMenu from '../views/SiteMain';
 
 Vue.use(VueRouter);
 
@@ -9,41 +10,29 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: SiteMain,
+    component: MenuPage,
   },
   {
     path: '/about',
     name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutPage'),
   },
   {
     path: '/contact',
     name: 'contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     // component: SiteHeader,
-  },
-  {
-    path: '/karzina',
-    name: 'contact',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/KarzinaView'),
   },
   {
     path: '/fastfood/:id',
     name: 'fastfood',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import('../views/AboutPage'),
   },
-  { path: '/:pathMatch(.*)*', name: 'NotFound', component: SiteMain },
+  {
+    path: '/korzina',
+    name: 'Korzina',
+    component: () => import('../views/KorzinaView'),
+  },
+  { path: '/:pathMatch(.*)*', name: 'NotFound', component: SiteMenu },
 ];
 
 const router = new VueRouter({

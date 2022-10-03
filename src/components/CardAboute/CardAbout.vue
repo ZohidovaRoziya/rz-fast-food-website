@@ -3,7 +3,7 @@
     <div class="container">
       <div class="img-wrapper">
         <img
-          :src="require(`@/assets/images/${fastFood.img}`)"
+          :src="require(`../../assets/images/${fastFood.img}`)"
           width="1000"
           alt="about img"
         />

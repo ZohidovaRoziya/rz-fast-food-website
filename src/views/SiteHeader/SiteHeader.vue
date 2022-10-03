@@ -1,6 +1,6 @@
 <template>
     <div>
-      <site-header ref="siteHeader"/>
+      <site-header ref="siteHeader" />
     </div>
 </template>
 

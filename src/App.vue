@@ -1,8 +1,7 @@
 <template>
   <v-app>
-    <site-header ref="productCount"/>
-      <router-view @updateData="showData"/>
-
+    <site-header ref="productCount" />
+    <router-view  @updateData="showData" />
   </v-app>
 </template>
 

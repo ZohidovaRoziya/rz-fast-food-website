@@ -12,7 +12,7 @@
           <div class="card-img-warap">
             <img
               class="card-img"
-              :src="require(`../../assets/images/${item.img}`)"
+              :src="require(`@/assets/images/${item.img}`)"
               alt="card-img"
             />
           </div>
@@ -27,54 +27,29 @@
           <hr />
           <div class="card-bottom">
             <p class="card-price">
-              {{ (item.price * item.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
+              {{ (item.price * item.count ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
             </p>
-            <button v-if="!item.editRow" class="card-btn"
-             @click.stop="() => {
-              item.editRow = !item.editRow
-              updateCount(item, 'plus')
-             }">Tanlash</button>
-            <div class="btn-wrap" @click.stop v-else>
-              <button
-                @click.stop="updateCount(item, 'minus')"
-                class="minus-count btn"
-                type="button"
-              >
-                -
-              </button>
-              <v-text-field
-                :rules="countRules"
-                outlined
-                type="number"
-                v-model="item.count"
-                class="counter"
-                hide-details
-              ></v-text-field>
-              <button
-                type="button"
-                class="plus-count btn"
-                @click.stop="updateCount(item, 'plus')"
-              >
-                +
-              </button>
-            </div>
+            {{ item.count }} berildi
           </div>
         </li>
       </ul>
+      <button>
+        zakaz berish narhi {{ allPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
+        </button>
     </div>
   </main>
 </template>
 
 <script>
-import fastData from '../../mock';
 /* eslint-disable no-param-reassign */
 
 export default {
-  name: 'SiteMain',
+  name: 'KorzinaView',
   data() {
     return {
-      fastData,
+      fastData: JSON.parse(localStorage.getItem('cardItmes') || '[]'),
       countRules: [(v) => v <= 10 || 'Bizda faqat 10 ta lavash qolgan', (v) => v > 0 || 'Iltmos hisobni togri kiriting'],
+      allPrice: 0,
     };
   },
   mounted() {
@@ -91,6 +66,10 @@ export default {
         }
       });
     }
+
+    this.fastData.forEach((data) => {
+      this.allPrice += data.price * data.count;
+    });
   },
   methods: {
     updateCount(data, type) {
@@ -112,4 +91,4 @@ export default {
 };
 </script>
 
-<style src="./SiteMain.scss" lang="scss"></style>
+<style src="./KorzinaView.scss" lang="scss"></style>
