@@ -1,6 +1,6 @@
 <template>
     <div>
-      <site-header />
+      <site-header ref="siteHeader"/>
     </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: 'SiteHeaderData',
   components: {
     SiteHeader,
+  },
+  methods: {
+    refreshCount() {
+      this.$refs.siteHeader.refreshCount();
+    },
   },
 };
 </script>

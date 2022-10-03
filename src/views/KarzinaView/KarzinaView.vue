@@ -14,7 +14,7 @@
           <div class="card-img-warap">
             <img
               class="card-img"
-              :src="require(`../../assets/images/${item.img}`)"
+              :src="require(`@/assets/images/${item.img}`)"
               alt="card-img"
             />
           </div>
@@ -31,53 +31,26 @@
             <p class="card-price">
               {{ (item.price * item.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
             </p>
-            <button
-              v-if="!item.editRow"
-              class="card-btn"
-              @click.stop="() => {
-                item.editRow = !item.editRow
-                updateCount(item, 'plus')
-              }"
-            >
-              Tanlash
-            </button>
-            <div class="btn-wrap" @click.stop v-else>
-              <button
-                @click.stop="updateCount(item, 'minus')"
-                class="minus-count btn"
-                type="button"
-              >
-                -
-              </button>
-              <v-text-field
-                :rules="countRules"
-                outlined
-                type="number"
-                v-model="item.count"
-                class="counter"
-                hide-details
-              ></v-text-field>
-              <button type="button" @click="updateCount(item, 'plus')" class="plus-count btn">
-                +
-              </button>
-            </div>
+              {{item.count}} berildi
           </div>
         </li>
       </ul>
+
+      <button> Umumiy summa {{ allPrice}} </button>
     </div>
   </main>
 </template>
 
 <script>
-import fastData from '../../mock';
 
 export default {
   name: 'SiteMain',
   data() {
     return {
       isHidden: true,
-      fastData,
+      fastData: JSON.parse(localStorage.getItem('cardItems') || '[]'),
       countRules: [(v) => v <= 10 || 'Bizda faqat 10 ta lavash qolgan', (v) => v > 0 || 'Iltmos hisobni togri kiriting'],
+      allPrice: 0,
     };
   },
   methods: {
@@ -115,6 +88,9 @@ export default {
         }
       });
     }
+    this.fastData.forEach((data) => {
+      this.allPrice += data.price * data.count;
+    });
   },
 };
 </script>

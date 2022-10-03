@@ -1,6 +1,7 @@
 <template>
     <div>
-      <site-main />
+    <!-- eslint-disable-next-line vue/no-parsing-error -->
+      <site-main @updateData="$emit('updateData')" />
     </div>
 </template>
 
