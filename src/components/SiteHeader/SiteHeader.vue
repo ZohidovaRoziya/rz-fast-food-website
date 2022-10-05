@@ -2,7 +2,7 @@
     <header class="site-header">
       <div class="container">
         <h1 class="site-heading">
-           FastFood
+          Foods
         </h1>
           <nav class="site-nav">
             <ul class="site-nav__list">

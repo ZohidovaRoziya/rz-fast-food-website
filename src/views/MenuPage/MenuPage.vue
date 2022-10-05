@@ -1,6 +1,6 @@
 <template>
   <div>
-    <site-menu />
+    <site-menu @updateData="$emit('updateData', $event)" />
   </div>
 </template>
 
