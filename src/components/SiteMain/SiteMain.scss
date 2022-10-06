@@ -34,7 +34,8 @@
   background-color: #EF5B0C;
 }
 
-.card-img-warap {
+.card-img-wrap {
+  height: 280px;
   overflow: hidden;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -56,7 +57,11 @@
 }
 
 .card-head {
-  margin: 0 15px;
+  margin: 0;
+  padding: 0 15px;
+  background-color: #EF5B0C;
+  position: relative;
+  top: -70px;
 }
   .card-title {
     color: yellow;
@@ -79,11 +84,14 @@
   }
 
   .card-bottom {
-    margin:20px;
+    padding:20px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     font-size: 18px;
+    position: relative;
+    top: -70px;
+    border-top: 2px solid yellow;
 
     .card-price {
       margin: 0;

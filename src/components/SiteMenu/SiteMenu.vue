@@ -7,7 +7,11 @@
         <h2 class="menu-title">to our Food site</h2>
         <h3 class="menu-subtitle">Menu</h3>
         <div v-for="item in menuData" :key="item.id" class="content">
-          <button @click="toggleCategory(item.name)" class="menu-text">{{ item.text }}</button>
+          <button
+            @click="toggleCategory(item.name)"
+            :class="[{ active: item.name == currentCategory }, 'menu-text']"
+            >{{ item.text }}
+          </button>
         </div>
       </div>
     </div>
@@ -18,12 +22,26 @@
         :key="item.id"
         @click="$router.push({ name: 'fastfood', params: { id: item.id } })"
         class="card-item">
-          <div class="card-img-warap">
+          <div class="card-img-wrap">
             <img
               class="card-img"
               :src="require(`../../assets/images/${item.img}`)"
               alt="card-img"
             />
+            </div>
+            <div class="card-img-content">
+              <img
+              width="118" height="100"
+              :src="require(`../../assets/images/${item.img1}`)"
+              class="card-img-middle" alt="img1">
+              <img
+              width="116" height="100"
+              :src="require(`../../assets/images/${item.img2}`)"
+              class="card-img-middle" alt="img2">
+              <img
+              width="115" height="100"
+              :src="require(`../../assets/images/${item.img3}`)"
+              class="card-img-middle" alt="img3">
           </div>
           <div class="card-head">
             <h2 class="card-title">
@@ -33,7 +51,6 @@
             </h2>
             <p class="card-text">{{ item.text }}</p>
           </div>
-          <hr />
           <div class="card-bottom">
             <p class="card-price">
               {{ (item.price * item.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
@@ -160,6 +177,21 @@ export default {
       }
       localStorage.setItem('cardItmes', JSON.stringify(cardItems));
       this.$emit('updateData', 'changed');
+    },
+    // eslint-disable-next-line consistent-return
+    clickImg(data, imgs) {
+      if (imgs === 'img1') {
+        // eslint-disable-next-line no-param-reassign
+        data.img = data.img1;
+      } else if (imgs === 'img2') {
+        // eslint-disable-next-line no-param-reassign
+        data.img = data.img2;
+      } else if (imgs === 'img3') {
+        // eslint-disable-next-line no-param-reassign
+        data.img = data.img3;
+      } else {
+        return data.img;
+      }
     },
   },
 };
