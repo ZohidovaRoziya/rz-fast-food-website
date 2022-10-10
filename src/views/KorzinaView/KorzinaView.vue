@@ -1,40 +1,37 @@
 <!-- eslint-disable vuejs-accessibility/click-events-have-key-events -->
 <template>
-  <main class="site-main">
-    <div class="container">
-      <ul class="card-list">
+  <main class="basket-wrapper">
+    <div class="basket-container">
+      <ul class="basket-list">
         <li
           v-for="item in fastData"
           :key="item.id"
           @click="$router.push({ name: 'fastfood', params: { id: item.id } })"
-          class="card-item"
+          class="basket-item"
         >
-          <div class="card-img-warap">
+          <div class="basket-img-warap">
             <img
-              class="card-img"
+              class="basket-img"
               :src="require(`@/assets/images/${item.img}`)"
-              alt="card-img"
+              alt="basket-img"
             />
           </div>
-          <div class="card-head">
-            <h2 class="card-title">
-              <router-link :to="{ name: 'fastfood', params: { id: item.id } }">{{
-                item.title
-              }}</router-link>
-            </h2>
-            <p class="card-text">{{ item.text }}</p>
+          <div class="basket-head">
+            <h1 class="basket-title">
+               {{ item.title}}
+            </h1>
+            <p class="basket-text">{{ item.text }}</p>
           </div>
-          <hr />
-          <div class="card-bottom">
-            <p class="card-price">
+          <div class="basket-bottom">
+            <p class="basket-price">
               {{ (item.price * item.count ).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
             </p>
-            {{ item.count }} berildi
+            {{ item.count }} ta berildi
           </div>
         </li>
       </ul>
-      <button>
-        zakaz berish narhi {{ allPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
+      <button class="basket-total">
+        Jami summa {{ allPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
         </button>
     </div>
   </main>

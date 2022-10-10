@@ -7,7 +7,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  margin-top: 150px;
+  padding-top: 150px;
 }
 
 .img-wrapper {
@@ -162,4 +162,15 @@
     display: none !important;
     margin-bottom: 0 !important;
   }
+}
+
+.card-about-main {
+  width: 100%;
+  min-width: 100%;
+  height: 100vh;
+  background-color: #fff;
+}
+
+.card-about-img {
+  object-fit: cover;
 }

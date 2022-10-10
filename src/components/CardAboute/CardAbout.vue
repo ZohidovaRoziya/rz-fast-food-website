@@ -1,10 +1,9 @@
 <template>
-  <main>
+  <main class="card-about-main">
     <div class="container">
       <div class="img-wrapper">
-        <img
+        <img class="card-about-img"
           :src="require(`../../assets/images/${fastFood.img}`)"
-          width="1000"
           alt="about img"
         />
         <h2>{{ fastFood.title }}</h2>
