@@ -16,80 +16,7 @@
       </div>
     </div>
     <div class="menu-left">
-      <ul v-if="showData" class="card-list">
-        <li v-for="item in cardData"
-        :key="item.id"
-        @click="$router.push({ name: 'fastfood', params: { id: item.id } })"
-        class="card-item">
-          <div class="card-img-wrap">
-            <img
-              class="card-img"
-              :src="require(`../../assets/images/${item.img}`)"
-              alt="card-img"
-            />
-            </div>
-            <div class="card-img-content">
-              <img @click.stop="clickCardImg(item, 'img1')"
-              width="118" height="100"
-              :src="require(`../../assets/images/${item.img1}`)"
-              class="card-img-middle" alt="img1">
-              <img @click.stop="clickCardImg(item, 'img2')"
-              width="116" height="100"
-              :src="require(`../../assets/images/${item.img2}`)"
-              class="card-img-middle" alt="img2">
-              <img @click.stop="clickCardImg(item, 'img3')"
-              width="115" height="100"
-              :src="require(`../../assets/images/${item.img3}`)"
-              class="card-img-middle" alt="img3">
-          </div>
-          <div class="card-head">
-            <h2 class="card-title">
-              <router-link :to="{ name: 'fastfood', params: { id: item.id } }">{{
-                item.title
-              }}</router-link>
-            </h2>
-            <p class="card-text">{{ item.text }}</p>
-          </div>
-          <div class="card-bottom">
-            <p class="card-price">
-              {{ (item.price * item.count).toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ") }} so'm
-            </p>
-            <button
-              v-if="!item.editRow"
-              class="card-btn"
-              @click.stop="
-                () => {
-                  item.editRow = !item.editRow;
-                  updateCount(item, 'plus');
-                }
-              "
-            >
-              Tanlash
-            </button>
-            <div class="btn-wrap" @click.stop v-else>
-              <button
-                @click.stop="updateCount(item, 'minus')"
-                class="minus-count btn"
-                type="button"
-              >
-                -
-              </button>
-              <v-text-field
-                :rules="countRules"
-                outlined
-                type="string"
-                v-model="item.count"
-                class="counter"
-                hide-details
-              ></v-text-field>
-              <button type="button" class="plus-count btn" @click.stop="updateCount(item, 'plus')">
-                +
-              </button>
-            </div>
-          </div>
-        </li>
-      </ul>
-      <ul v-else class="card-list">
+      <ul class="card-list">
         <li v-for="item in visibleProducts"
         :key="item.id"
         @click="$router.push({ name: 'fastfood', params: { id: item.id } })"
@@ -176,7 +103,7 @@ export default {
         {
           id: 0,
           text: 'All Menu',
-          name: this.currentCategory,
+          name: 'all',
         },
         {
           id: 1,
@@ -204,9 +131,8 @@ export default {
           name: 'drinks',
         },
       ],
-      showData: true,
       cardData,
-      currentCategory: cardData,
+      currentCategory: 'all',
       countRules: [(v) => v <= 10 || 'Bizda faqat 10 ta lavash qolgan', (v) => v > 0 || 'Iltmos hisobni togri kiriting'],
     };
   },
@@ -229,13 +155,15 @@ export default {
   },
   computed: {
     visibleProducts() {
+      if (this.currentCategory === 'all') {
+        return this.cardData;
+      }
       return this.cardData.filter((item) => this.currentCategory === item.category);
     },
   },
   methods: {
     toggleCategory(categoryName) {
       this.currentCategory = categoryName;
-      this.showData = false;
     },
     updateCount(data, type) {
       const cardItems = JSON.parse(localStorage.getItem('cardItmes') || '[]');
