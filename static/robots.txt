@@ -1,0 +1,9 @@
+# sitecode:bozor.com
+Host: https://m.test.bozor.com/
+Sitemap: https://m.test.bozor.com/sitemap.xml
+
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /

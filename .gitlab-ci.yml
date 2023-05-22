@@ -1,0 +1,95 @@
+stages:
+  - build
+  - deploy
+
+# dev
+build_dev_app:
+  image: node:16
+  stage: build
+  only:
+    - dev
+  script:
+    - npm install
+    - npm run build
+    - npm run generate
+  cache:
+    paths:
+      - node_modules
+  artifacts:
+    paths:
+      - .nuxt
+      - dist
+    expire_in: 1 hour
+
+production_dev:
+  stage: deploy
+  environment:
+    name: production_dev
+    url: https://test.bozor.com
+
+  only:
+    - dev
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo -e "$ENV_DEV" > .env
+  script:
+    - export PROJECT_PATH=/var/www/test.bozor.com
+    - scp -r ./.nuxt $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./nuxt.config.js $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./dist $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./plugins $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./static $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./package.json $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+
+    - chmod 600 $ID_RSA
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$DEV_SERVER_IP "cd $PROJECT_PATH/run && bash pm2restart.sh"
+
+# main
+build_app:
+  image: node:16
+  stage: build
+  only:
+    - main
+  script:
+    - npm install
+    - npm run build
+    - npm run generate
+  cache:
+    paths:
+      - node_modules
+  artifacts:
+    paths:
+      - .nuxt
+      - dist
+    expire_in: 1 hour
+
+production:
+  stage: deploy
+  # environment:
+    # name: production
+    # url: https://test.bozor.com
+
+  only:
+    - main
+  before_script:
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - mkdir -p ~/.ssh
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+    - echo -e "$ENV_MAIN" > .env
+  script:
+    - export PROJECT_PATH=/var/www/test.bozor.com
+    - scp -r ./.nuxt $SERVER_USER@$SERVER_IP:$PROJECT_PATH
+    - scp -r ./nuxt.config.js $SERVER_USER@$SERVER_IP:$PROJECT_PATH
+    - scp -r ./dist $SERVER_USER@$DEV_SERVER_IP:$PROJECT_PATH
+    - scp -r ./plugins $SERVER_USER@$SERVER_IP:$PROJECT_PATH
+    - scp -r ./static $SERVER_USER@$SERVER_IP:$PROJECT_PATH
+    - scp -r ./package.json $SERVER_USER@$SERVER_IP:$PROJECT_PATH
+
+    - chmod 600 $ID_RSA
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd $PROJECT_PATH/run && bash pm2restart.sh"
